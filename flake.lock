@@ -1,0 +1,88 @@
+{
+  "nodes": {
+    "hyprland": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "wlroots": "wlroots"
+      },
+      "locked": {
+        "lastModified": 1668299961,
+        "narHash": "sha256-lZO4wR3Owtg+FFtIQERhiVkYrXtrIJKtomsU9OZZSX0=",
+        "owner": "hyprwm",
+        "repo": "Hyprland",
+        "rev": "78a545112aa564f62e945fdd91ce3f33698bf9b1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hyprwm",
+        "repo": "Hyprland",
+        "type": "github"
+      }
+    },
+    "myRepo": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1668270509,
+        "narHash": "sha256-QY9rZuEqvDkBodilPGOUjawO8Iv2b5aOYQVXV+CZcNI=",
+        "owner": "huantian1234",
+        "repo": "myNUR",
+        "rev": "e9730b4bdcc27a39f41b3d985d2c532027e703c4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "huantian1234",
+        "repo": "myNUR",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1668087632,
+        "narHash": "sha256-T/cUx44aYDuLMFfaiVpMdTjL4kpG7bh0VkN6JEM78/E=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "5f588eb4a958f1a526ed8da02d6ea1bea0047b9f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "hyprland": "hyprland",
+        "myRepo": "myRepo",
+        "nixpkgs": "nixpkgs"
+      }
+    },
+    "wlroots": {
+      "flake": false,
+      "locked": {
+        "host": "gitlab.freedesktop.org",
+        "lastModified": 1666466001,
+        "narHash": "sha256-ZjxAnqtcGmHQHKL1Z9sIraDnzIqrJleWcJXfPtzAm74=",
+        "owner": "wlroots",
+        "repo": "wlroots",
+        "rev": "c2d2773df57750081b16d56da13b5015d752cbd7",
+        "type": "gitlab"
+      },
+      "original": {
+        "host": "gitlab.freedesktop.org",
+        "owner": "wlroots",
+        "repo": "wlroots",
+        "type": "gitlab"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
