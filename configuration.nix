@@ -18,6 +18,8 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./nvidia.nix
+      ./fonts.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -45,38 +47,6 @@ in
 
   # Select internationalisation properties.
     i18n.defaultLocale = "zh_CN.UTF-8";
-    fonts = {
-      fontDir.enable = true;
-      fonts = with pkgs; [
-        noto-fonts
-        noto-fonts-cjk-sans
-        noto-fonts-cjk-serif
-        sarasa-gothic  #更纱黑体
-        source-code-pro
-        hack-font
-        jetbrains-mono
-        font-awesome
-      ];
-    };
-
-   # 简单配置一下 fontconfig 字体顺序，以免 fallback 到不想要的字体
-    fonts.fontconfig = {
-      defaultFonts = {
-        emoji = ["Noto Color Emoji"];
-        monospace = [
-          "Noto Sans Mono CJK SC"
-          "DejaVu Sans Mono"
-        ];
-        sansSerif = [
-          "Noto Sans CJK SC"
-          "Source Han Sans SC"
-        ];
-        serif = [
-          "Noto Serif CJK SC"
-          "Source Han Serif SC"
-        ];
-      };
-    };
 
   # console = {
   #   font = "Lat2-Terminus16";
@@ -201,6 +171,7 @@ in
   programs.seahorse.enable = true;
   services.mpd.enable = true;
   programs.xwayland.enable = true;
+  programs.steam.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
