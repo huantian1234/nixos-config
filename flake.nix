@@ -35,6 +35,7 @@
           { programs.hyprland.enable = true;}
 
           ./configuration.nix
+          ./nvidia.nix
         ];
       };
     };
