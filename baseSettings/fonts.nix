@@ -1,4 +1,4 @@
-b, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -9,7 +9,7 @@ b, pkgs, ... }:
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
-      nerdfonts
+#      nerdfonts
       twemoji-color-font
       jetbrains-mono
       font-awesome

@@ -5,21 +5,12 @@
 { config, pkgs, ... }:
 let
   user="fantasky";
-  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
-    export __NV_PRIME_RENDER_OFFLOAD=1
-    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
-    export __GLX_VENDOR_LIBRARY_NAME=nvidia
-    export __VK_LAYER_NV_optimus=NVIDIA_only
-    exec "$@"
-  '';
-
 in
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./nvidia.nix
-      ./fonts.nix
+      ./baseSettings/base.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -30,7 +21,6 @@ in
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-    networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
   nix = {
     settings = {
       substituters = [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" "https://hyprland.cachix.org"  ];
@@ -38,34 +28,11 @@ in
       experimental-features = [ "nix-command" "flakes" ];
     };
   };
-  # Set your time zone.
-    time.timeZone = "Asia/Shanghai";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Select internationalisation properties.
-    i18n.defaultLocale = "zh_CN.UTF-8";
-
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkbOptions in tty.
-  # };
-    i18n.inputMethod={
-	enabled = "fcitx5";
-        fcitx5.enableRimeData= true;
-	fcitx5.addons = with pkgs; [
-		fcitx5-rime
-                fcitx5-chinese-addons
-	];
-  #    enabled = "ibus";
-  #    ibus.engines = with pkgs.ibus-engines; [
-  #      libpinyin
-  #      rime
-  #    ];
-    };
   environment = {
     variables = {
       QT_QPA_PLATFORMTHEME = "gtk2";
@@ -108,21 +75,7 @@ in
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  # Enable sound.
-    sound.enable = true;
-    hardware.pulseaudio.enable = false;
-    nixpkgs.config.pulseaudio = true;
-    programs.light.enable = true;
     
-    services.xserver.videoDrivers = ["nvidia"];
-    hardware.nvidia.modesetting.enable = true;
-    hardware.nvidia.prime = {
-      offload.enable = true;
-      intelBusId = "PCI:0:2:0";
-      nvidiaBusId = "PCI:1:0:0";
-    };
-    hardware.opengl.enable = true;
-    hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -149,8 +102,8 @@ in
       clash
       myRepo.clash-for-windows
       alacritty
-      rofi-wayland
       waybar
+      rofi-wayland
       fcitx5-gtk
       fcitx5-lua
       libsForQt5.fcitx5-qt
@@ -165,13 +118,23 @@ in
       swaybg
       pciutils
       glxinfo
+      neovim
+      ranger
     ];
-    
+  programs.waybar.enable = true; 
   services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true;
-  services.mpd.enable = true;
   programs.xwayland.enable = true;
   programs.steam.enable = true;
+  programs.proxychains.enable = true;
+  programs.proxychains.proxies = {
+    myproxy = {
+      enable = true;
+      type = "socks5";
+      host = "127.0.0.1";
+      port = 7894;
+    };
+  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -206,6 +169,9 @@ in
    nixpkgs.overlays = [
     (self: super: {
       waybar = super.waybar.overrideAttrs (oldAttrs: {
+        patchPhase = ''
+        sed -i 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprctl dispatch workspace " + name_;\n\tsystem(command.c_str());/g' src/modules/wlr/workspace_manager.cpp
+        '';
         mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
       });
     })
