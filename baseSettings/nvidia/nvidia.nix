@@ -15,7 +15,7 @@ in
   services.xserver.videoDrivers = ["nvidia"];
   hardware = {
     nvidia = {
-      modsetting.enable = true;
+      modesetting.enable = true;
       prime = {
         offload.enable = true;
 	intelBusId = "PCI:0:2:0";

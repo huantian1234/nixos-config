@@ -11,8 +11,14 @@
       # build with your own instance of nixpkgs
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    
+    home-manager = {
+      # User Package Management
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-  outputs = inputs @ { self, nixpkgs, hyprland , ... }: 
+  outputs = inputs @ { self, nixpkgs, hyprland , home-manager, ... }: 
     let
       user = "fantasky";
       system = "x86_64-linux";
@@ -32,10 +38,16 @@
           #####
           #hyprland
           hyprland.nixosModules.default
-          { programs.hyprland.enable = true;}
-
           ./configuration.nix
-          ./nvidia.nix
+	  home-manager.nixosModules.home-manager{
+	    home-manager.useUserPackages = true;
+	    home-manager.useGlobalPkgs = true;
+	    home-manager.users.${user} = {
+	      imports = [
+	        (import ./home.nix)
+	      ];
+            };
+	  }
         ];
       };
     };

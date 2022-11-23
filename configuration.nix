@@ -11,6 +11,7 @@ in
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./baseSettings/base.nix
+      ./programs/program.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -82,7 +83,7 @@ in
   # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.${user} = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "networkmanager" "video"]; # Enable ‘sudo’ for the user.
+      extraGroups = [ "wheel" "networkmanager" "video" "docker"]; # Enable ‘sudo’ for the user.
   #   packages = with pkgs; [
   #     firefox
   #     thunderbird
@@ -96,7 +97,6 @@ in
       wget
       git
       firefox
-      home-manager
       binutils
       file 
       clash
