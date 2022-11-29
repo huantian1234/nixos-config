@@ -9,7 +9,7 @@
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
-#      nerdfonts
+      fira-code
       twemoji-color-font
       jetbrains-mono
       font-awesome
@@ -59,7 +59,7 @@
             </test>
             <edit name="family" mode="prepend" binding="strong">
               <string>Noto Sans Mono CJK SC</string>
-              <string>Symbols Nerd Font</string>
+              <string>Font Awesome</string>
               <string>Twemoji</string>
             </edit>
           </match>

@@ -101,6 +101,7 @@ in
       file 
       clash
       myRepo.clash-for-windows
+      myRepo.wemeet
       alacritty
       waybar
       rofi-wayland
@@ -118,10 +119,12 @@ in
       swaybg
       pciutils
       glxinfo
-      neovim
       ranger
+      xclip
+			nodejs
     ];
-  programs.waybar.enable = true; 
+  programs.fish.enable = true;
+  users.defaultUserShell = pkgs.fish;
   services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true;
   programs.xwayland.enable = true;

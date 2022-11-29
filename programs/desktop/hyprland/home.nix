@@ -22,7 +22,7 @@
        # See https://wiki.hyprland.org/Configuring/Keywords/ for more
        
        # Execute your favorite apps at launch
-       exec-once = fcitx5 & nm-applet --indicator & swaybg -i ${./wallpaper/wallpaper1.jpg}
+       exec-once = waybar & fcitx5 & nm-applet --indicator & swaybg -i ${./wallpaper/wallpaper1.jpg}
        # Source a file (multi-file configs)
        # source = ~/.config/hypr/myColors.conf
        
