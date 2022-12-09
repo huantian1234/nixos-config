@@ -18,7 +18,7 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "ntfs" ];
-  nixpkgs.config.allowUnfree=true;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -36,7 +36,6 @@ in
 
   environment = {
     variables = {
-      QT_QPA_PLATFORMTHEME = "gtk2";
       MOZ_ENABLE_WAYLAND = "1";
       SDL_VIDEODRIVER = "wayland";
       QT_QPA_PLATFORM = "wayland";
@@ -56,8 +55,11 @@ in
        enable = true;
        displayManager = {
          lightdm.enable = true;   
+         #gdm.enable = true;
    #      defaultSession = "xfce";
        };
+      #desktopManager.gnome.enable = true;
+      desktopManager.cinnamon.enable = true;
    #  desktopManager.xfce.enable = true;
    };
     pipewire = {
@@ -102,7 +104,6 @@ in
       clash
       myRepo.clash-for-windows
       myRepo.wemeet
-      alacritty
       waybar
       rofi-wayland
       fcitx5-gtk
@@ -122,6 +123,7 @@ in
       ranger
       xclip
 			nodejs
+      vscode
     ];
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
@@ -168,7 +170,7 @@ in
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.05"; # Did you read the comment?
+  system.stateVersion = "22.11"; # Did you read the comment?
    nixpkgs.overlays = [
     (self: super: {
       waybar = super.waybar.overrideAttrs (oldAttrs: {
@@ -179,5 +181,6 @@ in
       });
     })
   ];
+  nixpkgs.config.allowUnfree = true;
 }
 

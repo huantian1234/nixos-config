@@ -17,4 +17,7 @@ in
       install_lsp
     ];
   };
+  home.file.".config/nvim/init.vim".source = ./nvim/init.vim;
+  home.file.".config/nvim/lua"=./nvim/lua;
+  home.file.".plugin"=./nvim/plugin;
 }

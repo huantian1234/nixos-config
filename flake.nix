@@ -39,15 +39,15 @@
           #hyprland
           hyprland.nixosModules.default
           ./configuration.nix
-	  home-manager.nixosModules.home-manager{
-	    home-manager.useUserPackages = true;
-	    home-manager.useGlobalPkgs = true;
-	    home-manager.users.${user} = {
-	      imports = [
-	        (import ./home.nix)
-	      ];
+	        home-manager.nixosModules.home-manager{
+	          home-manager.useUserPackages = true;
+	          home-manager.useGlobalPkgs = true;
+	          home-manager.users.${user} = {
+	            imports = [
+	              (import ./home.nix)
+	            ];
             };
-	  }
+	        }
         ];
       };
     };

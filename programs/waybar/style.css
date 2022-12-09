@@ -1,0 +1,125 @@
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    border:none;
+    border-radius:0;
+    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+}
+
+window#waybar {
+    background:transparent;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+#workspaces {
+    margin-left:8px;
+    margin-top:4px;
+    border-radius:10px;
+    background:#383c4a;
+    transition:none;
+    font-size:13px;
+    padding-right:4px;
+    padding-left:3px;
+}
+#workspaces button {
+    transition: none;
+    color: #7c818c;
+    background: transparent;
+    padding-right:5px;
+    padding-left:5px;
+}
+#workspaces button.persistent {
+    color: #7c818c;
+}
+#workspaces button:hover {
+    transition: none;
+    box-shadow:inherit;
+    text-shadow:inherit;
+    border-radius:10px;
+    color:white;
+    background: #7c818c;
+    font-size:15px;
+}
+#workspaces button.active {
+    background:#00011d;
+    border-radius:10px;
+}
+#clock {
+    background:#492d22;
+    color:#d8c7b5;
+    border-radius:7px;
+    margin-top:4px;
+    font-size:16px;
+    font-weight:bold;
+    padding-right:12px;
+    padding-left:12px;
+}
+
+#backlight,#pulseaudio,#network,#clock,#battery:hover {
+    box-shadow:inherit;
+    text-shadow:inherit;
+}
+#backlight {
+    background:#813785; 
+    color:white;
+    margin-top:4px;
+    border-radius:10px 0px 0px 10px;
+    padding-left:6px; padding-right:6px;
+    margin-left:4px;
+}
+#pulseaudio {
+    background:#813785; 
+    color:white;
+    margin-top:4px;
+    border-radius:0px 10px 10px 0px;
+    padding-left:6px;
+    padding-right:6px;
+    margin-right:4px;
+}
+#network {
+  background:#346c9c; 
+  color:white;
+  margin-top:4px;
+  border-radius:10px 0px 0px 10px;
+  padding-left:6px;
+  padding-right:6px;
+  margin-left:4px;
+}
+
+#cpu {
+  background:#346c9c; 
+  color:white;
+  margin-top:4px;
+  padding-left:6px;
+  padding-right:6px;
+}
+#memory {  
+  background:#346c9c; 
+  color:white;
+  margin-top:4px;
+  padding-left:6px;
+  padding-right:6px;
+  border-radius:0px 10px 10px 0px;
+  margin-right:4px;
+}
+
+#battery {
+  background:#e85827;
+  color:white;
+  margin-top:4px;
+  padding-left:6px;
+  padding-right:6px;
+  border-radius:10px 0px 0px 10px;
+  margin-left:4px;
+}
+
+#tray { 
+  background:#e85827;
+  color:white;
+  margin-top:4px;
+  padding-left:6px;
+  padding-right:6px;
+  border-radius:0px 10px 10px 0px;
+  margin-right:8px;
+}
